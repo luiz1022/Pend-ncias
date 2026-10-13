@@ -84,6 +84,3 @@ Antes de publicar o backend integrado, confirme que possui autorização para co
 
 `google-apps-script` · `javascript` · `html` · `css` · `github-pages` · `google-sheets` · `google-drive` · `automacao` · `manutencao` · `inspecao`
 
-## Licença
-
-Este repositório não declara uma licença de código aberto. Adicione uma licença somente depois de confirmar que possui os direitos necessários para licenciar o código.
