@@ -1,12 +1,16 @@
 # Sistema de Inspeção e Gestão de Pendências
 
+**Demonstração interativa:** [Acessar o sistema pelo GitHub Pages](https://luiz1022.github.io/Pend-ncias/)
+
 Aplicação de demonstração para registro de inspeções, inclusão de evidências fotográficas, consulta por TAG e acompanhamento de pendências.
 
 ## Teste a demonstração
 
-Este repositório possui uma demonstração interativa compatível com **GitHub Pages**. Nela, visitantes podem registrar uma pendência com fotografia, consultar registros anteriores pela TAG, filtrar a lista e mudar o status.
+Acesse a aplicação diretamente pelo link acima. Não é necessário instalar nada ou fazer login.
 
-> **Importante:** a demonstração do GitHub Pages é independente do backend. Os registros ficam no armazenamento local do navegador de cada visitante. Eles não são enviados ao Google Sheets ou Google Drive e não ficam visíveis para outras pessoas. Utilize somente dados fictícios.
+A demonstração permite registrar pendências com fotografias, consultar registros por TAG, pesquisar e filtrar informações e alterar o status das pendências.
+
+> **Importante:** a demonstração é independente do backend. Os registros ficam no armazenamento local do navegador de cada visitante. Eles não são enviados ao Google Sheets ou Google Drive e não ficam visíveis para outras pessoas. Utilize somente dados fictícios.
 
 ### Como publicar a demonstração no GitHub Pages
 
