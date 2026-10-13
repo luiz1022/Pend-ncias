@@ -1,0 +1,25 @@
+# Local / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Google Apps Script / clasp
+.clasp.json
+.claspignore
+
+# Environment / secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Generated / local artifacts
+*.log
+dist/
+build/
+
+# Local screenshots with real data
+screenshots/*.png
+screenshots/*.jpg
+screenshots/*.jpeg

@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --primary: #173B57;
+      --primary-dark: #102B40;
+      --primary-soft: #EAF2F8;
+      --accent: #F4C542;
+      --background: #F4F7FA;
+      --surface: #FFFFFF;
+      --text: #24313A;
+      --muted: #687783;
+      --border: #D7E0E7;
+      --danger: #B42318;
+      --warning: #9A6700;
+      --success: #216E39;
+      --shadow: 0 18px 40px rgba(16, 43, 64, 0.10);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 28px 16px 40px;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background:
+        linear-gradient(180deg, #EAF0F5 0%, var(--background) 30%, var(--background) 100%);
+      color: var(--text);
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid rgba(23, 59, 87, 0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .header {
+      position: relative;
+      padding: 28px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary) 0%, #24587C 100%);
+      border-bottom: 5px solid var(--accent);
+      overflow: hidden;
+    }
+
+    .header::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -90px;
+      top: -120px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .brand {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand-mark {
+      width: 70px;
+      height: 70px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 70px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.98);
+      color: var(--primary);
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.55rem;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      margin: 7px 0 0;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .user-badge {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 8px 13px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.11);
+      color: #fff;
+      font-size: 0.8rem;
+      backdrop-filter: blur(6px);
+    }
+
+    .content {
+      padding: 28px;
+    }
+
+    .intro {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px;
+      margin-bottom: 24px;
+      border: 1px solid #D7E7F3;
+      border-radius: 12px;
+      background: var(--primary-soft);
+      color: #35546B;
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+
+    .intro-icon {
+      flex: 0 0 auto;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 22px;
+      color: var(--primary);
+      font-size: 1rem;
+      font-weight: 750;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 4px;
+      height: 19px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--primary);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .required {
+      color: var(--danger);
+    }
+
+    input[type="text"],
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--text);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input[type="text"] {
+      height: 48px;
+      padding: 0 13px;
+    }
+
+    textarea {
+      min-height: 125px;
+      padding: 12px 13px;
+      line-height: 1.5;
+      resize: vertical;
+    }
+
+    input[type="file"] {
+      padding: 9px;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #4B7EA1;
+      box-shadow: 0 0 0 3px rgba(75, 126, 161, 0.14);
+    }
+
+    .hint-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.74rem;
+    }
+
+    .tag-alert {
+      display: none;
+      margin-top: 11px;
+      padding: 13px;
+      border: 1px solid #E6C86D;
+      border-radius: 10px;
+      background: #FFF8E1;
+    }
+
+    .tag-alert-title {
+      margin: 0 0 10px;
+      color: #735700;
+      font-size: 0.84rem;
+      font-weight: 750;
+    }
+
+    .pending-item {
+      padding: 9px 0;
+      border-top: 1px solid rgba(154, 103, 0, 0.15);
+      color: #5D4A16;
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+
+    .pending-item:first-child {
+      border-top: 0;
+    }
+
+    .photo-preview {
+      display: none;
+      margin-top: 12px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #F8FAFC;
+    }
+
+    .photo-preview img {
+      display: block;
+      width: 100%;
+      max-height: 340px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .preview-caption {
+      margin-top: 7px;
+      color: var(--success);
+      font-size: 0.77rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .status-message {
+      display: none;
+      margin-bottom: 14px;
+      padding: 11px 12px;
+      border-radius: 10px;
+      font-size: 0.83rem;
+      line-height: 1.4;
+    }
+
+    .status-message.error {
+      display: block;
+      border: 1px solid #F1B9B4;
+      background: #FFF2F0;
+      color: var(--danger);
+    }
+
+    .status-message.success {
+      display: block;
+      border: 1px solid #BFE0CA;
+      background: #F1FBF4;
+      color: var(--success);
+    }
+
+    .submit-area {
+      position: relative;
+      margin-top: 8px;
+    }
+
+    .submit {
+      width: 100%;
+      min-height: 50px;
+      border: 0;
+      border-radius: 11px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      cursor: pointer;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .submit:hover:not(:disabled) {
+      transform: translateY(-1px);
+    }
+
+    .submit:disabled {
+      opacity: 0.62;
+      cursor: not-allowed;
+    }
+
+    .loading {
+      display: none;
+      margin-top: 11px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin-right: 6px;
+      vertical-align: -3px;
+      border: 2px solid #C7D3DC;
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .access-denied {
+      display: none;
+      padding: 44px 28px 50px;
+      text-align: center;
+    }
+
+    .access-denied-icon {
+      font-size: 2.3rem;
+    }
+
+    .access-denied h2 {
+      margin: 12px 0 8px;
+      color: var(--primary);
+      font-size: 1.15rem;
+    }
+
+    .access-denied p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.55;
+    }
+
+    .footer {
+      padding: 13px 28px;
+      border-top: 1px solid #E6EBEF;
+      background: #FAFBFC;
+      color: #7B8791;
+      font-size: 0.72rem;
+      text-align: center;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px 10px 24px;
+      }
+
+      .header,
+      .content {
+        padding: 20px 17px;
+      }
+
+      .brand {
+        gap: 13px;
+      }
+
+      .brand-mark {
+        width: 58px;
+        height: 58px;
+        flex-basis: 58px;
+      }
+
+      h1 {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="app-shell">
+    <header class="header">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">IM</div>
+
+        <div>
+          <h1 id="appTitle">Inspection &amp; Maintenance Tracker</h1>
+          <p class="subtitle">
+            Registro de inspeções, evidências fotográficas e acompanhamento de pendências
+          </p>
+        </div>
+      </div>
+
+      <div id="userDisplay" class="user-badge" aria-live="polite">
+        ● Verificando conta...
+      </div>
+    </header>
+
+    <section id="accessDenied" class="access-denied" aria-live="polite">
+      <div class="access-denied-icon">🔒</div>
+      <h2>Acesso não autorizado</h2>
+      <p id="accessDeniedText">
+        Conecte-se com uma conta autorizada para utilizar o sistema.
+      </p>
+    </section>
+
+    <form id="inspectionForm" class="content" style="display:none;" novalidate>
+      <div class="intro">
+        <div class="intro-icon" aria-hidden="true">ℹ️</div>
+        <div>
+          Registre a condição encontrada de forma objetiva. O sistema salva os dados em uma planilha,
+          armazena a evidência fotográfica no Drive e atualiza os relatórios por local.
+        </div>
+      </div>
+
+      <div class="section-title">Dados da inspeção</div>
+
+      <div id="statusMessage" class="status-message" role="status"></div>
+
+      <div class="field">
+        <label for="local">1. Local da inspeção <span class="required">*</span></label>
+        <input
+          id="local"
+          name="local"
+          type="text"
+          maxlength="120"
+          placeholder="Ex.: Subestação A / Área técnica"
+          autocomplete="off"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label for="tag">2. TAG do equipamento/sistema <span class="required">*</span></label>
+        <input
+          id="tag"
+          name="tag"
+          type="text"
+          maxlength="60"
+          placeholder="Ex.: EQ-001"
+          autocomplete="off"
+          required
+        >
+
+        <div class="hint-row">
+          <span>Use a identificação padronizada do ativo.</span>
+          <span id="tagCounter">0/60</span>
+        </div>
+
+        <div id="tagAlert" class="tag-alert">
+          <h3 id="tagAlertTitle" class="tag-alert-title"></h3>
+          <div id="tagAlertList"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="foto">3. Foto da pendência/falha <span class="required">*</span></label>
+
+        <input
+          id="foto"
+          name="foto"
+          type="file"
+          accept="image/*"
+          capture="environment"
+          required
+        >
+
+        <div class="hint-row">
+          <span>Imagem clara da condição encontrada.</span>
+          <span>Máx. 6 MB</span>
+        </div>
+
+        <div id="photoPreview" class="photo-preview">
+          <img id="photoPreviewImage" src="" alt="Pré-visualização da foto">
+          <div class="preview-caption">✓ Foto preparada para envio</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="descricao">4. Descrição da pendência <span class="required">*</span></label>
+
+        <textarea
+          id="descricao"
+          name="descricao"
+          maxlength="3000"
+          placeholder="Descreva objetivamente a condição encontrada, impacto observado e detalhes relevantes para o tratamento."
+          required
+        ></textarea>
+
+        <div class="hint-row">
+          <span>Seja claro e objetivo.</span>
+          <span id="descriptionCounter">0/3000</span>
+        </div>
+      </div>
+
+      <div class="submit-area">
+        <button id="submitButton" class="submit" type="submit">
+          Registrar pendência
+        </button>
+
+        <div id="loading" class="loading" aria-live="polite">
+          <span class="spinner" aria-hidden="true"></span>
+          Salvando registro e atualizando relatório...
+        </div>
+      </div>
+    </form>
+
+    <footer class="footer">
+      Google Apps Script • Google Sheets • Google Drive
+    </footer>
+  </main>
+
+  <script>
+    'use strict';
+
+    const state = {
+      user: null,
+      photoBase64: '',
+      tagTimer: null
+    };
+
+    const MAX_CLIENT_PHOTO_BYTES = 6 * 1024 * 1024;
+    const MAX_IMAGE_DIMENSION = 1600;
+    const JPEG_QUALITY = 0.84;
+
+    document.addEventListener('DOMContentLoaded', init);
+
+    function init() {
+      bindEvents();
+
+      google.script.run
+        .withSuccessHandler(applyUserAccess)
+        .withFailureHandler(error => {
+          showFatalError('Não foi possível verificar a conta atual.');
+          console.error(error);
+        })
+        .obterUsuarioLogado();
+    }
+
+    function bindEvents() {
+      document.getElementById('inspectionForm')
+        .addEventListener('submit', handleSubmit);
+
+      document.getElementById('tag')
+        .addEventListener('input', handleTagInput);
+
+      document.getElementById('foto')
+        .addEventListener('change', handlePhotoSelect);
+
+      document.getElementById('descricao')
+        .addEventListener('input', updateDescriptionCounter);
+    }
+
+    function applyUserAccess(user) {
+      state.user = user;
+
+      document.getElementById('appTitle').textContent =
+        user.appName || 'Inspection & Maintenance Tracker';
+
+      const userDisplay = document.getElementById('userDisplay');
+
+      if (user.autorizado) {
+        userDisplay.textContent = `● ${user.email}`;
+
+        document.getElementById('inspectionForm').style.display = 'block';
+        document.getElementById('accessDenied').style.display = 'none';
+        return;
+      }
+
+      userDisplay.textContent = `⚠ ${user.email || 'Conta não identificada'}`;
+
+      document.getElementById('inspectionForm').style.display = 'none';
+      document.getElementById('accessDenied').style.display = 'block';
+
+      document.getElementById('accessDeniedText').textContent =
+        `O sistema exige ${user.dominioExigido}.`;
+    }
+
+    function handleTagInput() {
+      const input = document.getElementById('tag');
+      const value = input.value.trim();
+
+      document.getElementById('tagCounter').textContent =
+        `${input.value.length}/60`;
+
+      clearTimeout(state.tagTimer);
+
+      if (value.length < 2) {
+        hideTagAlert();
+        return;
+      }
+
+      state.tagTimer = setTimeout(() => {
+        google.script.run
+          .withSuccessHandler(renderTagHistory)
+          .withFailureHandler(() => hideTagAlert())
+          .buscarPendenciasPorTag(value);
+      }, 450);
+    }
+
+    function renderTagHistory(records) {
+      const panel = document.getElementById('tagAlert');
+      const list = document.getElementById('tagAlertList');
+      const title = document.getElementById('tagAlertTitle');
+
+      if (!records || records.length === 0) {
+        hideTagAlert();
+        return;
+      }
+
+      title.textContent =
+        `⚠ ${records.length} registro(s) encontrado(s) para esta TAG`;
+
+      list.replaceChildren();
+
+      records.forEach(record => {
+        const item = document.createElement('div');
+        item.className = 'pending-item';
+
+        const strong1 = document.createElement('strong');
+        strong1.textContent = 'Data: ';
+        item.appendChild(strong1);
+        item.appendChild(document.createTextNode(record.data || '-'));
+        item.appendChild(document.createTextNode(' | '));
+
+        const strong2 = document.createElement('strong');
+        strong2.textContent = 'Local: ';
+        item.appendChild(strong2);
+        item.appendChild(document.createTextNode(record.local || '-'));
+
+        item.appendChild(document.createElement('br'));
+
+        const strong3 = document.createElement('strong');
+        strong3.textContent = 'Inspetor: ';
+        item.appendChild(strong3);
+        item.appendChild(document.createTextNode(record.usuario || '-'));
+
+        item.appendChild(document.createElement('br'));
+
+        const strong4 = document.createElement('strong');
+        strong4.textContent = 'Descrição: ';
+        item.appendChild(strong4);
+        item.appendChild(document.createTextNode(record.descricao || '-'));
+
+        list.appendChild(item);
+      });
+
+      panel.style.display = 'block';
+    }
+
+    function hideTagAlert() {
+      document.getElementById('tagAlert').style.display = 'none';
+      document.getElementById('tagAlertList').replaceChildren();
+    }
+
+    async function handlePhotoSelect(event) {
+      const file = event.target.files[0];
+
+      if (!file) {
+        clearPhotoPreview();
+        return;
+      }
+
+      if (!file.type.startsWith('image/')) {
+        clearPhotoInput();
+        showMessage('Selecione um arquivo de imagem válido.', 'error');
+        return;
+      }
+
+      if (file.size > MAX_CLIENT_PHOTO_BYTES) {
+        clearPhotoInput();
+        showMessage('A foto excede o limite de 6 MB.', 'error');
+        return;
+      }
+
+      try {
+        state.photoBase64 = await compressImage(file);
+        document.getElementById('photoPreviewImage').src = state.photoBase64;
+        document.getElementById('photoPreview').style.display = 'block';
+        showMessage('', '');
+      } catch (error) {
+        clearPhotoInput();
+        showMessage('Não foi possível preparar a imagem para envio.', 'error');
+        console.error(error);
+      }
+    }
+
+    function compressImage(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onerror = () => reject(new Error('Falha ao ler a imagem.'));
+
+        reader.onload = event => {
+          const image = new Image();
+
+          image.onload = () => {
+            const scale = Math.min(
+              1,
+              MAX_IMAGE_DIMENSION / Math.max(image.width, image.height)
+            );
+
+            const canvas = document.createElement('canvas');
+
+            canvas.width = Math.max(1, Math.round(image.width * scale));
+            canvas.height = Math.max(1, Math.round(image.height * scale));
+
+            const context = canvas.getContext('2d');
+
+            if (!context) {
+              reject(new Error('Canvas indisponível.'));
+              return;
+            }
+
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+            resolve(canvas.toDataURL('image/jpeg', JPEG_QUALITY));
+          };
+
+          image.onerror = () => reject(new Error('Imagem inválida.'));
+          image.src = event.target.result;
+        };
+
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function handleSubmit(event) {
+      event.preventDefault();
+
+      const form = document.getElementById('inspectionForm');
+
+      if (!form.reportValidity()) {
+        return;
+      }
+
+      if (!state.photoBase64) {
+        showMessage('Selecione uma foto antes de registrar a pendência.', 'error');
+        return;
+      }
+
+      setLoading(true);
+
+      const payload = {
+        local: document.getElementById('local').value.trim(),
+        tag: document.getElementById('tag').value.trim(),
+        descricao: document.getElementById('descricao').value.trim(),
+        fotoBase64: state.photoBase64
+      };
+
+      google.script.run
+        .withSuccessHandler(handleSuccess)
+        .withFailureHandler(handleError)
+        .salvarPendencia(payload);
+    }
+
+    function handleSuccess(message) {
+      const form = document.getElementById('inspectionForm');
+
+      form.reset();
+      state.photoBase64 = '';
+
+      clearPhotoPreview();
+      hideTagAlert();
+      updateDescriptionCounter();
+      document.getElementById('tagCounter').textContent = '0/60';
+
+      setLoading(false);
+      showMessage(message || 'Pendência registrada com sucesso!', 'success');
+    }
+
+    function handleError(error) {
+      setLoading(false);
+
+      const message =
+        error && error.message
+          ? error.message
+          : 'Ocorreu um erro inesperado ao salvar o registro.';
+
+      showMessage(message, 'error');
+      console.error(error);
+    }
+
+    function setLoading(isLoading) {
+      const button = document.getElementById('submitButton');
+      const loading = document.getElementById('loading');
+
+      button.disabled = isLoading;
+      button.textContent = isLoading ? 'Salvando...' : 'Registrar pendência';
+      loading.style.display = isLoading ? 'block' : 'none';
+    }
+
+    function showMessage(message, type) {
+      const box = document.getElementById('statusMessage');
+
+      box.className = 'status-message';
+
+      if (!message) {
+        box.textContent = '';
+        return;
+      }
+
+      box.textContent = message;
+      box.classList.add(type);
+    }
+
+    function updateDescriptionCounter() {
+      const value = document.getElementById('descricao').value;
+
+      document.getElementById('descriptionCounter').textContent =
+        `${value.length}/3000`;
+    }
+
+    function clearPhotoPreview() {
+      state.photoBase64 = '';
+      document.getElementById('photoPreviewImage').src = '';
+      document.getElementById('photoPreview').style.display = 'none';
+    }
+
+    function clearPhotoInput() {
+      document.getElementById('foto').value = '';
+      clearPhotoPreview();
+    }
+
+    function showFatalError(message) {
+      const box = document.getElementById('statusMessage');
+      box.className = 'status-message error';
+      box.textContent = message;
+      document.getElementById('inspectionForm').style.display = 'none';
+      document.getElementById('accessDenied').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

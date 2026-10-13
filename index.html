@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173b57">
+  <meta name="description" content="Demonstração interativa de um sistema de inspeção e acompanhamento de pendências.">
+  <title>Sistema de Inspeção e Gestão de Pendências | Demonstração</title>
+  <style>
+    :root{--navy:#173b57;--navy2:#102b40;--blue:#24587c;--gold:#f4c542;--bg:#f3f6f9;--card:#fff;--text:#24313a;--muted:#667784;--line:#dbe3e9;--green:#207448;--green-bg:#e5f5eb;--amber:#8a6200;--amber-bg:#fff4d2;--red:#aa2e25;--red-bg:#fff0ed;--shadow:0 14px 36px rgba(16,43,64,.09);--r:16px}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.45}button,input,textarea,select{font:inherit}button{cursor:pointer}.hero{background:linear-gradient(128deg,var(--navy2),var(--blue));color:white;padding:30px 20px 25px;border-bottom:5px solid var(--gold)}.hero-inner{max-width:1180px;margin:auto}.brand{display:flex;align-items:center;gap:16px}.mark{width:58px;height:58px;background:#fff;color:var(--navy);border-radius:14px;display:grid;place-items:center;font-weight:900;letter-spacing:-1px;font-size:1.1rem;flex-shrink:0}.eyebrow{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#f8d96a;margin:0 0 5px}.hero h1{font-size:clamp(1.45rem,3vw,2.15rem);line-height:1.15;margin:0}.hero p.sub{margin:8px 0 0;color:#d8e6ef;max-width:780px;font-size:.95rem}.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:19px}.chip{font-size:.75rem;font-weight:700;border-radius:999px;padding:6px 10px;border:1px solid #ffffff35;background:#ffffff12;color:#fff}.page{max-width:1180px;margin:24px auto 48px;padding:0 18px}.notice{display:flex;gap:12px;align-items:flex-start;background:#fff9e8;border:1px solid #f1d986;color:#6c5415;border-radius:13px;padding:14px 16px;margin-bottom:20px;font-size:.86rem}.notice strong{display:block;margin-bottom:2px}.layout{display:grid;grid-template-columns:minmax(300px,390px) minmax(0,1fr);gap:20px;align-items:start}.panel{background:var(--card);border:1px solid #e6ebef;border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:18px 20px 15px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.panel-head h2{margin:0;color:var(--navy);font-size:1rem}.panel-head p{margin:3px 0 0;color:var(--muted);font-size:.78rem}.panel-body{padding:20px}.form-field{margin-bottom:16px}.form-field label{display:block;color:#24465e;font-size:.84rem;font-weight:750;margin-bottom:7px}.required{color:var(--red)}.form-field input[type=text],.form-field textarea,.form-field select{width:100%;border:1px solid #cad6df;background:#fff;border-radius:10px;padding:11px 12px;color:var(--text);outline:none;transition:border .18s,box-shadow .18s}.form-field input[type=text],.form-field select{height:44px}.form-field textarea{min-height:100px;resize:vertical}.form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:#5688a8;box-shadow:0 0 0 3px #5688a82a}.field-help{font-size:.73rem;color:var(--muted);margin-top:5px;display:flex;justify-content:space-between;gap:8px}.filedrop{border:1.5px dashed #b8c9d5;border-radius:12px;padding:14px;background:#f8fbfd}.filedrop input{width:100%;font-size:.8rem}.preview{display:none;margin-top:10px}.preview img{width:100%;max-height:190px;object-fit:contain;border-radius:9px;background:white;border:1px solid var(--line)}.preview small{display:block;color:var(--green);font-weight:700;margin-top:6px}.btn{border:0;border-radius:10px;padding:11px 14px;font-size:.83rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s,opacity .15s}.btn:hover{transform:translateY(-1px)}.btn:disabled{opacity:.6;cursor:wait;transform:none}.btn-primary{background:var(--navy);color:#fff;width:100%;min-height:46px}.btn-secondary{background:#eaf1f6;color:var(--navy)}.btn-quiet{background:transparent;color:var(--muted);padding:8px}.msg{display:none;padding:10px 12px;border-radius:9px;font-size:.82rem;margin-bottom:15px}.msg.error{display:block;background:var(--red-bg);color:var(--red);border:1px solid #f3cbc4}.msg.success{display:block;background:var(--green-bg);color:var(--green);border:1px solid #c0e5cd}.section-label{font-size:.72rem;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.09em;margin:19px 0 10px}.tag-history{display:none;margin:0 0 18px;padding:12px;border:1px solid #efd47a;border-radius:10px;background:#fff9e6;font-size:.8rem;color:#665218}.tag-history strong.title{display:block;margin-bottom:7px}.history-item{border-top:1px solid #ecd98f;padding:8px 0}.history-item:first-of-type{border-top:0}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:18px}.metric{background:#fff;border:1px solid #e5ebef;border-radius:13px;padding:15px 16px;box-shadow:0 5px 18px #102b4008}.metric .k{font-size:.75rem;color:var(--muted);font-weight:700}.metric .v{font-size:1.75rem;line-height:1.2;font-weight:850;color:var(--navy);margin-top:4px;font-variant-numeric:tabular-nums}.metric .legend{font-size:.71rem;color:var(--muted);margin-top:2px}.toolbar{padding:14px 18px;display:flex;gap:9px;flex-wrap:wrap;border-bottom:1px solid var(--line)}.toolbar input,.toolbar select{border:1px solid #cad6df;border-radius:9px;background:#fff;padding:9px 10px;color:var(--text);font-size:.8rem;min-width:120px}.toolbar input{flex:1;min-width:170px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.79rem}th{text-align:left;background:#f7f9fb;color:#4f6472;font-size:.69rem;text-transform:uppercase;letter-spacing:.04em;padding:12px 13px;white-space:nowrap}td{padding:13px;border-top:1px solid #edf1f4;vertical-align:top}tbody tr:hover{background:#fbfcfd}.tag{display:inline-block;border:1px solid #d5e1e9;background:#eff5f9;color:#21445c;padding:4px 7px;border-radius:7px;font-size:.73rem;font-weight:800;white-space:nowrap}.location{font-weight:750;color:var(--navy)}.description{max-width:260px;white-space:pre-wrap;overflow-wrap:anywhere;color:#4d5e68}.date{white-space:nowrap;color:var(--muted);font-size:.72rem}.status{border-radius:999px;border:0;font-size:.72rem;font-weight:800;padding:7px 8px;max-width:125px}.status.pending{background:var(--amber-bg);color:var(--amber)}.status.done{background:var(--green-bg);color:var(--green)}.photo-link{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:#eaf1f6;color:var(--navy);border:0;overflow:hidden}.photo-link img{width:100%;height:100%;object-fit:cover}.empty{padding:35px 20px;text-align:center;color:var(--muted);font-size:.86rem}.empty .icon{font-size:1.7rem;margin-bottom:6px}.panel-foot{border-top:1px solid var(--line);padding:12px 18px;color:var(--muted);font-size:.73rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.footer{max-width:1180px;margin:0 auto;padding:0 18px 30px;color:#768590;font-size:.74rem;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}.footer strong{color:#4f6472}.modal{position:fixed;inset:0;background:#102b40c9;display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.modal.open{display:flex}.modal-card{width:min(600px,100%);background:#fff;border-radius:16px;padding:16px;box-shadow:0 20px 80px #0003}.modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.modal-top h3{margin:0;color:var(--navy);font-size:1rem}.modal img{display:block;width:100%;max-height:70vh;object-fit:contain;border-radius:10px;background:#f4f7f9}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:980px){.layout{grid-template-columns:1fr}.form-panel{order:1}.list-panel{order:2}.form-panel .panel-body{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}.form-panel .form-field:nth-of-type(4){grid-column:1/-1}.form-panel .submit-wrap,.form-panel #formMessage,.form-panel .section-label,.form-panel #tagHistory{grid-column:1/-1}}
+    @media(max-width:620px){.hero{padding:24px 16px 21px}.brand{align-items:flex-start;gap:12px}.mark{width:47px;height:47px;border-radius:12px}.hero p.sub{font-size:.86rem}.page{padding:0 10px;margin-top:14px}.notice{font-size:.79rem;padding:12px}.form-panel .panel-body{display:block}.panel-head{padding:16px}.panel-body{padding:16px}.metrics{gap:7px}.metric{padding:12px 10px}.metric .v{font-size:1.45rem}.metric .k{font-size:.68rem}.toolbar{padding:11px}.toolbar input{min-width:100%;flex:auto}.toolbar select{flex:1}.panel-foot{padding:11px}.footer{padding:0 12px 25px}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">SI</div>
+        <div>
+          <p class="eyebrow">Demonstração interativa</p>
+          <h1>Sistema de Inspeção e Gestão de Pendências</h1>
+          <p class="sub">Registre uma condição encontrada, anexe uma foto, consulte ocorrências por TAG e acompanhe o status de cada item.</p>
+        </div>
+      </div>
+      <div class="hero-tags"><span class="chip">HTML · CSS · JavaScript</span><span class="chip">Demonstração sem login</span><span class="chip">Dados de exemplo</span></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <aside class="notice" role="note">
+      <span aria-hidden="true">ⓘ</span>
+      <div><strong>Ambiente de demonstração — não é o sistema de produção.</strong> Você pode cadastrar ocorrências e alterar status. Os dados ficam somente neste navegador (armazenamento local); não são enviados para planilhas ou contas do Google e não ficam visíveis para outros visitantes. Use apenas dados fictícios.</div>
+    </aside>
+
+    <section class="metrics" aria-label="Resumo das pendências">
+      <div class="metric"><div class="k">Total de registros</div><div id="metricTotal" class="v">—</div><div class="legend">Exemplos e registros desta sessão</div></div>
+      <div class="metric"><div class="k">Pendentes</div><div id="metricPending" class="v">—</div><div class="legend">Aguardando tratamento</div></div>
+      <div class="metric"><div class="k">Concluídas</div><div id="metricDone" class="v">—</div><div class="legend">Tratamento finalizado</div></div>
+    </section>
+
+    <div class="layout">
+      <section class="panel form-panel">
+        <div class="panel-head"><div><h2>Registrar inspeção</h2><p>Os campos marcados com * são obrigatórios.</p></div><span aria-hidden="true">✎</span></div>
+        <form id="inspectionForm" class="panel-body">
+          <div id="formMessage" class="msg" role="status" aria-live="polite"></div>
+          <div class="form-field"><label for="local">Local da inspeção <span class="required">*</span></label><input id="local" name="local" type="text" maxlength="120" placeholder="Ex.: Área técnica A" required><div class="field-help"><span>Informe uma área fictícia.</span><span id="localCount">0/120</span></div></div>
+          <div class="form-field"><label for="tag">TAG do equipamento <span class="required">*</span></label><input id="tag" name="tag" type="text" maxlength="60" placeholder="Ex.: EQ-001" autocomplete="off" required><div class="field-help"><span>Digite ao menos 2 caracteres para buscar.</span><span id="tagCount">0/60</span></div></div>
+          <div id="tagHistory" class="tag-history"><strong class="title" id="tagHistoryTitle">Registros para esta TAG</strong><div id="tagHistoryItems"></div></div>
+          <div class="form-field"><label for="foto">Foto da condição encontrada <span class="required">*</span></label><div class="filedrop"><input id="foto" name="foto" type="file" accept="image/*" required><div class="field-help"><span>A imagem é comprimida e guardada localmente.</span><span>Máx. 6 MB</span></div></div><div id="preview" class="preview"><img id="previewImage" alt="Pré-visualização da fotografia"><small id="photoCaption"></small></div></div>
+          <div class="form-field"><label for="descricao">Descrição da pendência <span class="required">*</span></label><textarea id="descricao" name="descricao" maxlength="1500" placeholder="Descreva a condição encontrada e os detalhes relevantes." required></textarea><div class="field-help"><span>Seja claro e objetivo.</span><span id="descriptionCount">0/1500</span></div></div>
+          <div class="submit-wrap"><button id="submitButton" class="btn btn-primary" type="submit">＋ Registrar pendência</button></div>
+        </form>
+      </section>
+
+      <section class="panel list-panel">
+        <div class="panel-head"><div><h2>Acompanhamento de pendências</h2><p>Filtre, consulte e altere o status dos exemplos.</p></div><button id="resetButton" class="btn btn-quiet" type="button" title="Restaurar dados iniciais">Restaurar exemplos</button></div>
+        <div class="toolbar">
+          <label class="sr-only" for="filterText">Buscar registros</label><input id="filterText" type="search" placeholder="Buscar por TAG, local ou descrição…">
+          <label class="sr-only" for="filterStatus">Filtrar por status</label><select id="filterStatus"><option value="Todos">Todos os status</option><option value="Pendente">Pendentes</option><option value="Concluido">Concluídas</option></select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Registro</th><th>TAG / local</th><th>Descrição</th><th>Foto</th><th>Status</th></tr></thead>
+            <tbody id="recordsBody"></tbody>
+          </table>
+          <div id="emptyState" class="empty" hidden><div class="icon">⌕</div><strong>Nenhum registro encontrado</strong><div>Altere os filtros ou cadastre uma nova pendência.</div></div>
+        </div>
+        <div class="panel-foot"><span id="shownCount">Exibindo — registros</span><span>Armazenamento local do navegador</span></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer"><span><strong>Sistema de Inspeção e Gestão de Pendências</strong> · Demonstração para portfólio</span><span>Dados locais de demonstração · Nenhuma integração real nesta página</span></footer>
+
+  <div id="photoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-card"><div class="modal-top"><h3 id="modalTitle">Fotografia do registro</h3><button id="closeModal" class="btn btn-secondary" type="button">Fechar</button></div><img id="modalImage" alt="Foto anexada ao registro"></div></div>
+
+<script>
+(() => {
+  'use strict';
+  const STORAGE_KEY = 'demo-inspecao-pendencias-v1';
+  const MAX_FILE_BYTES = 6 * 1024 * 1024;
+  let selectedPhoto = null;
+  let searchTimer = null;
+
+  const seedRecords = [
+    {id:'demo-1001',date:daysAgo(3),local:'Área técnica A',tag:'EQ-001',description:'Identificada vibração acima do habitual durante a inspeção visual. Recomenda-se avaliar fixação e condição do conjunto.',status:'Pendente',photo:null,photoName:''},
+    {id:'demo-1002',date:daysAgo(2),local:'Subestação de demonstração',tag:'EL-014',description:'Etiqueta de identificação parcialmente ilegível; programar substituição para manter a identificação do componente.',status:'Pendente',photo:null,photoName:''},
+    {id:'demo-1003',date:daysAgo(1),local:'Sala de equipamentos B',tag:'EQ-008',description:'Limpeza e organização concluídas durante a inspeção de rotina.',status:'Concluido',photo:null,photoName:''},
+    {id:'demo-1004',date:daysAgo(0),local:'Área técnica A',tag:'EQ-001',description:'Registro de exemplo para demonstrar a consulta por TAG e o histórico de ocorrências.',status:'Pendente',photo:null,photoName:''}
+  ];
+
+  function daysAgo(n){const d=new Date();d.setDate(d.getDate()-n);d.setHours(8+(n%5),30,0,0);return d.toISOString();}
+  function byId(id){return document.getElementById(id);}
+  function safeLoad(){try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const parsed=JSON.parse(raw);if(Array.isArray(parsed))return parsed;}}catch(e){console.warn('Não foi possível ler os dados locais.',e);}return structuredCloneSafe(seedRecords);}
+  function structuredCloneSafe(obj){return JSON.parse(JSON.stringify(obj));}
+  let records = safeLoad();
+  function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(records));return true;}catch(e){showMessage('Não foi possível armazenar todos os dados localmente. Restaure os exemplos e tente novamente com uma imagem menor.','error');return false;}}
+  function escapeHtml(value){return String(value ?? '').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+  function formatDate(value){const d=new Date(value);return Number.isNaN(d.getTime())?'—':new Intl.DateTimeFormat('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'}).format(d);}
+  function showMessage(message,type){const box=byId('formMessage');box.textContent=message;box.className=message?`msg ${type}`:'msg';if(message)box.scrollIntoView({behavior:'smooth',block:'nearest'});}
+  function setCounters(){byId('localCount').textContent=`${byId('local').value.length}/120`;byId('tagCount').textContent=`${byId('tag').value.length}/60`;byId('descriptionCount').textContent=`${byId('descricao').value.length}/1500`;}
+
+  function render(){
+    const total=records.length,done=records.filter(r=>r.status==='Concluido').length,pending=total-done;
+    byId('metricTotal').textContent=total;byId('metricPending').textContent=pending;byId('metricDone').textContent=done;
+    const q=byId('filterText').value.trim().toLocaleLowerCase('pt-BR');const status=byId('filterStatus').value;
+    const filtered=records.filter(r=>(status==='Todos'||r.status===status)&&[r.tag,r.local,r.description].some(v=>String(v||'').toLocaleLowerCase('pt-BR').includes(q))).sort((a,b)=>new Date(b.date)-new Date(a.date));
+    byId('recordsBody').innerHTML=filtered.map(r=>`<tr>
+      <td><div class="date">${escapeHtml(formatDate(r.date))}</div><div style="margin-top:4px;font-size:.7rem;color:#82909a">${escapeHtml(r.id.startsWith('demo-')?'Exemplo':'Novo registro')}</div></td>
+      <td><span class="tag">${escapeHtml(r.tag)}</span><div class="location" style="margin-top:7px">${escapeHtml(r.local)}</div></td>
+      <td><div class="description">${escapeHtml(r.description)}</div></td>
+      <td>${r.photo?`<button class="photo-link" type="button" data-photo="${escapeHtml(r.id)}" aria-label="Visualizar foto" title="Visualizar foto"><img src="${r.photo}" alt=""></button>`:(r.photoName?`<span title="${escapeHtml(r.photoName)}" class="photo-link" aria-label="Foto anexada">▧</span>`:'<span style="color:#9aa6ae">—</span>')}</td>
+      <td><label class="sr-only" for="status-${escapeHtml(r.id)}">Status do registro ${escapeHtml(r.tag)}</label><select id="status-${escapeHtml(r.id)}" class="status ${r.status==='Concluido'?'done':'pending'}" data-status="${escapeHtml(r.id)}"><option value="Pendente" ${r.status==='Pendente'?'selected':''}>Pendente</option><option value="Concluido" ${r.status==='Concluido'?'selected':''}>Concluída</option></select></td>
+    </tr>`).join('');
+    byId('recordsBody').querySelectorAll('[data-status]').forEach(el=>el.addEventListener('change',e=>changeStatus(e.currentTarget.dataset.status,e.currentTarget.value)));
+    byId('recordsBody').querySelectorAll('[data-photo]').forEach(el=>el.addEventListener('click',()=>openPhoto(el.dataset.photo)));
+    byId('emptyState').hidden=filtered.length>0;byId('shownCount').textContent=`Exibindo ${filtered.length} de ${total} registros`;
+    renderTagHistory();
+  }
+
+  function renderTagHistory(){
+    const tag=byId('tag').value.trim().toLocaleLowerCase('pt-BR');const history=byId('tagHistory');
+    if(tag.length<2){history.style.display='none';byId('tagHistoryItems').replaceChildren();return;}
+    const matches=records.filter(r=>r.tag.toLocaleLowerCase('pt-BR')===tag);
+    if(!matches.length){history.style.display='block';byId('tagHistoryTitle').textContent='Nenhuma ocorrência encontrada para esta TAG.';byId('tagHistoryItems').textContent='Ao registrar, este item aparecerá no histórico local.';return;}
+    byId('tagHistoryTitle').textContent=`${matches.length} registro(s) encontrado(s) para esta TAG`;
+    byId('tagHistoryItems').innerHTML=matches.slice(0,4).map(r=>`<div class="history-item"><strong>${escapeHtml(formatDate(r.date))} · ${escapeHtml(r.local)}</strong><br>${escapeHtml(r.description)}<br><span>Status: ${escapeHtml(r.status==='Concluido'?'Concluída':'Pendente')}</span></div>`).join('');history.style.display='block';
+  }
+
+  function changeStatus(id,status){const r=records.find(item=>item.id===id);if(!r)return;const previous=r.status;r.status=status;if(!persist()){r.status=previous;return;}render();showMessage(`Status atualizado para “${status==='Concluido'?'Concluída':'Pendente'}” neste navegador.`,'success');}
+  function openPhoto(id){const record=records.find(r=>r.id===id);if(!record||!record.photo)return;byId('modalImage').src=record.photo;byId('photoModal').classList.add('open');}
+  function closePhoto(){byId('photoModal').classList.remove('open');byId('modalImage').src='';}
+
+  function compressImage(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=()=>reject(new Error('Não foi possível ler a imagem.'));reader.onload=event=>{const img=new Image();img.onerror=()=>reject(new Error('O arquivo selecionado não é uma imagem válida.'));img.onload=()=>{const scale=Math.min(1,1000/Math.max(img.width,img.height));const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));const ctx=canvas.getContext('2d');if(!ctx){reject(new Error('Não foi possível processar a imagem neste navegador.'));return;}ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',.62));};img.src=event.target.result;};reader.readAsDataURL(file);});}
+
+  byId('foto').addEventListener('change',async e=>{
+    selectedPhoto=null;byId('preview').style.display='none';const file=e.target.files&&e.target.files[0];if(!file)return;
+    if(!file.type.startsWith('image/')){e.target.value='';showMessage('Selecione um arquivo de imagem válido.','error');return;}
+    if(file.size>MAX_FILE_BYTES){e.target.value='';showMessage('A imagem original deve ter no máximo 6 MB.','error');return;}
+    try{const data=await compressImage(file);selectedPhoto={data,name:file.name};byId('previewImage').src=data;byId('photoCaption').textContent=`Foto preparada: ${file.name} (comprimida para a demonstração)`;byId('preview').style.display='block';showMessage('','');}
+    catch(err){e.target.value='';showMessage(err.message||'Falha ao preparar a imagem.','error');}
+  });
+
+  byId('inspectionForm').addEventListener('submit',e=>{
+    e.preventDefault();setCounters();
+    const local=byId('local').value.trim(),tag=byId('tag').value.trim(),description=byId('descricao').value.trim();
+    if(local.length<2||tag.length<2||description.length<5){showMessage('Informe um local, uma TAG e uma descrição válidos.','error');return;}
+    if(!selectedPhoto){showMessage('Selecione uma fotografia para registrar a pendência.','error');return;}
+    const item={id:`reg-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,date:new Date().toISOString(),local,tag,description,status:'Pendente',photo:selectedPhoto.data,photoName:selectedPhoto.name};
+    const previous=records;records=[item,...records];
+    if(!persist()){records=previous;return;}
+    byId('inspectionForm').reset();selectedPhoto=null;byId('preview').style.display='none';byId('previewImage').src='';setCounters();showMessage('Pendência registrada na demonstração! O registro ficou salvo apenas neste navegador.','success');render();byId('filterText').value='';byId('filterStatus').value='Todos';render();
+  });
+
+  ['local','tag','descricao'].forEach(id=>byId(id).addEventListener('input',setCounters));
+  byId('tag').addEventListener('input',()=>{clearTimeout(searchTimer);searchTimer=setTimeout(renderTagHistory,180);});
+  byId('filterText').addEventListener('input',render);byId('filterStatus').addEventListener('change',render);
+  byId('resetButton').addEventListener('click',()=>{if(!window.confirm('Restaurar os exemplos? Isso apagará somente os registros locais desta demonstração.'))return;records=structuredCloneSafe(seedRecords);localStorage.removeItem(STORAGE_KEY);byId('filterText').value='';byId('filterStatus').value='Todos';showMessage('Exemplos restaurados. Nenhum dado foi enviado a um servidor.','success');render();});
+  byId('closeModal').addEventListener('click',closePhoto);byId('photoModal').addEventListener('click',e=>{if(e.target===byId('photoModal'))closePhoto();});document.addEventListener('keydown',e=>{if(e.key==='Escape')closePhoto();});
+  setCounters();render();
+})();
+</script>
+</body>
+</html>
